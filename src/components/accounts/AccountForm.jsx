@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import {
@@ -7,7 +6,6 @@ import {
   Box,
   Typography,
   FormControl,
-  InputLabel,
   InputAdornment,
 } from '@mui/material'
 
@@ -23,8 +21,10 @@ const AccountForm = ({ account, onSubmit, onCancel }) => {
       total_zeny: account?.total_zeny || 0,
     },
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, { setSubmitting }) => {
+      setSubmitting(true)
       onSubmit(values)
+      setSubmitting(false)
     },
   })
 
